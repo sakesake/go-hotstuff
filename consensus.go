@@ -3,6 +3,7 @@ package hotstuff
 import (
 	"bytes"
 	"fmt"
+	"time"
 
 	"github.com/dshulyak/go-hotstuff/types"
 	"go.uber.org/zap"
@@ -119,6 +120,7 @@ func (c *consensus) Send(state, root []byte, data *types.Data) {
 			Parent:     c.prepare.Hash(),
 			DataRoot:   root,
 			StateRoot:  state,
+			Timestamp:  time.Now().UnixNano(),
 		}
 		proposal := &types.Proposal{
 			Header:     header,

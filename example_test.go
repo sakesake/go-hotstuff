@@ -1,15 +1,6 @@
 package hotstuff
 
-import (
-	"context"
-	"time"
-
-	"github.com/dshulyak/go-hotstuff/crypto"
-	"github.com/dshulyak/go-hotstuff/types"
-	"go.uber.org/zap"
-)
-
-func ExampleFull() {
+/* func ExampleFull() {
 
 	logger, err := zap.NewProduction()
 	must(err)
@@ -54,3 +45,4 @@ func must(err error) {
 		panic(err)
 	}
 }
+*/

@@ -46,6 +46,7 @@ message Header {
         uint64 parentView = 3;
         bytes dataRoot = 4;
         bytes stateRoot = 5;
+        int64 timestamp = 6;
 }
 
 // Vote should be naturally aggregated into the certificate.

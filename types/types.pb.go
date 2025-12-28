@@ -5,10 +5,11 @@ package types
 
 import (
 	fmt "fmt"
-	proto "github.com/gogo/protobuf/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
+
+	proto "github.com/gogo/protobuf/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -400,6 +401,7 @@ type Header struct {
 	ParentView uint64 `protobuf:"varint,3,opt,name=parentView,proto3" json:"parentView,omitempty"`
 	DataRoot   []byte `protobuf:"bytes,4,opt,name=dataRoot,proto3" json:"dataRoot,omitempty"`
 	StateRoot  []byte `protobuf:"bytes,5,opt,name=stateRoot,proto3" json:"stateRoot,omitempty"`
+	Timestamp  int64  `protobuf:"varint,6,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 }
 
 func (m *Header) Reset()         { *m = Header{} }

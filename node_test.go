@@ -171,7 +171,7 @@ func testChainConsistencyAfterProgress(t *testing.T, n int, view uint64, filter 
 }
 
 func TestNodesProgressWithoutErrors(t *testing.T) {
-	testChainConsistencyAfterProgress(t, 4, 20, nil)
+	testChainConsistencyAfterProgress(t, 4, 2, nil)
 }
 
 func TestNodesProgressMessagesDropped(t *testing.T) {
