@@ -1278,6 +1278,13 @@ func (m *Header) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+
+	if m.Timestamp != 0 {
+		i = encodeVarintTypes(dAtA, i, uint64(m.Timestamp))
+		i--
+		dAtA[i] = 0x30 // field 6, wire type 0
+	}
+
 	if len(m.StateRoot) > 0 {
 		i -= len(m.StateRoot)
 		copy(dAtA[i:], m.StateRoot)
@@ -1795,6 +1802,9 @@ func (m *Header) Size() (n int) {
 	l = len(m.StateRoot)
 	if l > 0 {
 		n += 1 + l + sovTypes(uint64(l))
+	}
+	if m.Timestamp != 0 {
+		n += 1 + sovTypes(uint64(m.Timestamp))
 	}
 	return n
 }
@@ -2958,6 +2968,25 @@ func (m *Header) Unmarshal(dAtA []byte) error {
 				m.StateRoot = []byte{}
 			}
 			iNdEx = postIndex
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+			}
+			m.Timestamp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTypes
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Timestamp |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTypes(dAtA[iNdEx:])
