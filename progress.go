@@ -5,6 +5,7 @@ import "github.com/dshulyak/go-hotstuff/types"
 type MsgTo struct {
 	Recipients []uint64 // nil recipient list is a broadcast
 	Message    *types.Message
+	From       uint64
 }
 
 func (m *MsgTo) Broadcast() bool {
@@ -38,8 +39,8 @@ func (p *Progress) Empty() bool {
 	return len(p.Messages) == 0 && len(p.Events) == 0 && !p.WaitingData
 }
 
-func (p *Progress) AddMessage(msg *types.Message, recipients ...uint64) {
-	p.Messages = append(p.Messages, MsgTo{Recipients: recipients, Message: msg})
+func (p *Progress) AddMessage(msg *types.Message, from uint64, recipients ...uint64) {
+	p.Messages = append(p.Messages, MsgTo{Recipients: recipients, Message: msg, From: from})
 }
 
 func (p *Progress) AddHeader(header *types.Header, finalized bool) {

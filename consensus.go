@@ -152,7 +152,7 @@ func (c *consensus) Step(msg *types.Message) {
 }
 
 func (c *consensus) sendMsg(msg *types.Message, ids ...uint64) {
-	c.Progress.AddMessage(msg, ids...)
+	c.Progress.AddMessage(msg, c.id, ids...)
 	if ids == nil {
 		c.Step(msg)
 	}
