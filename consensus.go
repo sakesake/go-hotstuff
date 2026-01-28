@@ -467,7 +467,7 @@ func (c *consensus) getLeader(view uint64) uint64 {
 
 func (c *consensus) newTimeout() int {
 	// double for each gap between current round and last round where quorum was collected
-	return int(1 << (c.view - c.prepare.View))
+	return int(1 << (c.view - c.prepare.View + 4))
 }
 
 func (c *consensus) onVote(vote *types.Vote) {
